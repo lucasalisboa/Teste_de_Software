@@ -3,26 +3,26 @@ package br.al.lucas.Menu;
 import br.al.lucas.Entities.HouristWorker;
 
 import java.sql.Connection;
+import java.util.Scanner;
 
 public class PointCard extends Operation implements Command {
+    Scanner sc;
+    HouristWorker houristWorker;
+
     public PointCard() {
         super();
+        sc = new Scanner(System.in);
+        houristWorker = new HouristWorker();
     }
 
     @Override
     public void execute(Connection payroll, MyCalendar calendar) {
-        String worker_id = scanner_search();
-        int index = search(payroll, worker_id);
-        if(index != -1)
-        {
-            if(payroll.get(index) instanceof HouristWorker)
-            {
-                ((HouristWorker) payroll.get(index)).point();
-            }
-            else
-            {
-                System.out.println("THIS WORKER IS NOT A HOURIST");
-            }
-        }
+        int worker_id = scanner_int();
+        int horas_trabalhadas = scanner_int();
+        houristWorker.point(payroll,worker_id,horas_trabalhadas);
     }
+    public int scanner_int(){
+        return sc.nextInt();
+    }
+
 }

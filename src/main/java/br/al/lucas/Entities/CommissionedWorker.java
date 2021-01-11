@@ -1,5 +1,9 @@
 package br.al.lucas.Entities;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.Calendar;
 import java.util.Date;
 
@@ -8,12 +12,28 @@ public class CommissionedWorker extends Worker {
     private double sales;
     private double percent;
 
-    public void newSale()
+    public boolean newSale(Connection payroll, int worker_id,double valor_venda)
     {
-        double new_sale;
-        System.out.println("WHAT'S IS THE SALE PRICE?");
-        new_sale = sc.nextDouble();
-        sales += (new_sale*percent/100);
+        String sql_1 = "update comissionado set total_vendas=? where id_empregado=?";
+        String sql_2 = "select * from comissionado where id_empregado = ?";
+        try {
+            PreparedStatement stmt_2 = payroll.prepareStatement(sql_2);
+            stmt_2.setInt(1,worker_id);
+            ResultSet pst = stmt_2.executeQuery();
+            if(pst.next()){
+                double taxa_venda = pst.getDouble(3);
+                double aux_salario = pst.getDouble(4);
+                aux_salario = aux_salario + (valor_venda * taxa_venda/100);
+                PreparedStatement stmt_1 = payroll.prepareStatement(sql_1);
+                stmt_1.setInt(2,worker_id);
+                stmt_1.setDouble(1,aux_salario);
+                stmt_1.executeQuery();
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        }
+        return true;
 
     }
     public void setPercent()

@@ -31,7 +31,7 @@ public class AddSalaried extends Operation implements AddEmployer {
 
             }
             stmt.setDate(6, (Date) data_pag.getTime());
-            stmt.execute(sql);
+            stmt.executeQuery();
             ResultSet pst = stmt.getGeneratedKeys();
             int id = 0;
             if(pst.next()){
@@ -41,6 +41,7 @@ public class AddSalaried extends Operation implements AddEmployer {
             PreparedStatement new_stmt = payroll.prepareStatement(sql);
             new_stmt.setDouble(1,salario);
             new_stmt.setInt(2,id);
+            new_stmt.executeQuery();
             return true;
 
         } catch (SQLException e) {

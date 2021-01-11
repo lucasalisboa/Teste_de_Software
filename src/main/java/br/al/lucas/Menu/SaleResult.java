@@ -2,28 +2,32 @@ package br.al.lucas.Menu;
 
 
 import br.al.lucas.Entities.CommissionedWorker;
+import br.al.lucas.Entities.HouristWorker;
+import br.al.lucas.Entities.SalariedWorker;
 
 import java.sql.Connection;
+import java.util.Scanner;
 
 public class SaleResult extends Operation implements Command {
+    Scanner sc;
+    CommissionedWorker commissionedWorker;
+
     public SaleResult() {
         super();
+        sc = new Scanner(System.in);
+        commissionedWorker = new CommissionedWorker();
     }
 
     @Override
     public void execute(Connection payroll, MyCalendar calendar) {
-        String worker_id = scanner_search();
-        int index = search(payroll, worker_id);
-        if(index != -1)
-        {
-            if(payroll.get(index) instanceof CommissionedWorker)
-            {
-                ((CommissionedWorker) payroll.get(index)).newSale();
-            }
-            else
-            {
-                System.out.println("THIS WORKER IS NOT A COMMISSIONED");
-            }
-        }
+        int worker_id = scanner_int();
+        double valor_venda = scanner_double();
+        commissionedWorker.newSale(payroll,worker_id,valor_venda);
+    }
+    public int scanner_int(){
+        return sc.nextInt();
+    }
+    public double scanner_double(){
+        return sc.nextDouble();
     }
 }

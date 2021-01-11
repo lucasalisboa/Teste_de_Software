@@ -1,19 +1,38 @@
 package br.al.lucas.Entities;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Scanner;
 
 public class HouristWorker extends Worker {
     private double hour_salary;
-    private int hours;
-    Scanner sc = new Scanner(System.in);
 
-    public void point()
+    public boolean point(Connection payroll,int worker_id,int hours)
     {
-        System.out.println("HOW MANY HOURS THE WORKER WORKED TODAY?");
-        int new_hours = sc.nextInt();
-        hours += new_hours;
+        String sql_1 = "update horista set salario=? where id_empregado=?";
+        String sql_2 = "select * from horista where id_empregado = ?";
+        try {
+            PreparedStatement stmt_2 = payroll.prepareStatement(sql_2);
+            stmt_2.setInt(1,worker_id);
+            ResultSet pst = stmt_2.executeQuery();
+            if(pst.next()){
+                double hora_salario = pst.getDouble(2);
+                double aux_salario = pst.getDouble(3);
+                aux_salario = aux_salario + (hora_salario * hours);
+                PreparedStatement stmt_1 = payroll.prepareStatement(sql_1);
+                stmt_1.setInt(2,worker_id);
+                stmt_1.setDouble(1,aux_salario);
+                stmt_1.executeQuery();
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        }
+        return true;
     }
 
     @Override
@@ -38,25 +57,20 @@ public class HouristWorker extends Worker {
     @Override
     public void payment(Date today)
     {
-        double salary = hours * hour_salary;
-        System.out.println("PAYMENT: " +(salary - (salary*getSyndicate_tax()/100) ));
-        check_schedule(today);
+
     }
 
     public double getHour_salary() {
         return hour_salary;
     }
 
-    public int getHours() {
-        return hours;
-    }
 
     @Override
     public String toString() {
         return super.toString() +
                 "HouristWorker{" +
                 "hour_salary=" + hour_salary +
-                ", hours=" + hours +
+                ", hours="  +
                 '}';
     }
 }

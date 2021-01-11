@@ -29,7 +29,7 @@ public class AddHourist extends Operation implements AddEmployer {
 
             }
             stmt.setDate(6, (Date) data_pag.getTime());
-            stmt.execute(sql);
+            stmt.executeQuery();
             ResultSet pst = stmt.getGeneratedKeys();
             int id = 0;
             if(pst.next()){
@@ -40,6 +40,7 @@ public class AddHourist extends Operation implements AddEmployer {
             new_stmt.setDouble(1,salario);
             new_stmt.setDouble(2,hora_trabalho);
             new_stmt.setInt(3,id);
+            new_stmt.executeQuery();
             return true;
 
         } catch (SQLException e) {
