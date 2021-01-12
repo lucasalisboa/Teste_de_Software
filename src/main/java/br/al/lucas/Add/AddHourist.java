@@ -2,12 +2,11 @@ package br.al.lucas.Add;
 
 import br.al.lucas.Entities.HouristWorker;
 import br.al.lucas.Menu.MyCalendar;
-import br.al.lucas.Menu.Operation;
 
 import java.sql.*;
 import java.util.Calendar;
 
-public class AddHourist extends Operation implements AddEmployer {
+public class AddHourist implements AddEmployer {
 
     @Override
     public boolean add(Connection payroll, String nome, String endereco, String metodo_pag, boolean sindicato, MyCalendar data_hoje, double salario, double hora_trabalho, int taxa_venda) {
@@ -15,7 +14,7 @@ public class AddHourist extends Operation implements AddEmployer {
         HouristWorker horista = new HouristWorker();
         Calendar data_pag = horista.newPayDay_Pattern(data_hoje.today);
         try {
-            PreparedStatement stmt = payroll.prepareStatement(sql);
+            PreparedStatement stmt = payroll.prepareStatement(sql,Statement.RETURN_GENERATED_KEYS);
             stmt.setString(1,nome);
             stmt.setString(2,endereco);
             stmt.setString(3,metodo_pag);
@@ -28,8 +27,8 @@ public class AddHourist extends Operation implements AddEmployer {
                 stmt.setString(5,"Nao");
 
             }
-            stmt.setDate(6, (Date) data_pag.getTime());
-            stmt.executeQuery();
+            stmt.setDate(6, new Date(data_pag.getTime().getTime()));
+            stmt.execute();
             ResultSet pst = stmt.getGeneratedKeys();
             int id = 0;
             if(pst.next()){
@@ -40,7 +39,9 @@ public class AddHourist extends Operation implements AddEmployer {
             new_stmt.setDouble(1,salario);
             new_stmt.setDouble(2,hora_trabalho);
             new_stmt.setInt(3,id);
-            new_stmt.executeQuery();
+            new_stmt.execute();
+            stmt.close();
+            new_stmt.close();
             return true;
 
         } catch (SQLException e) {

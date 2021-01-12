@@ -10,15 +10,14 @@ public class SalariedWorker extends Worker {
     @Override
     public Calendar newPayDay_Pattern(Date today)
     {
-        pay_schedule = Schedule.PATTERN;
         Calendar cal = Calendar.getInstance();
         cal.setTime(today);
         cal.set(Calendar.DAY_OF_MONTH, cal.getActualMaximum(Calendar.DAY_OF_MONTH));
 
         int week = checkDay(cal);
-        pay_day = cal;
-        pay_day.add(Calendar.DAY_OF_MONTH,week);
-        return pay_day;
+        Calendar aux = cal;
+        aux.add(Calendar.DAY_OF_MONTH,week);
+        return aux;
     }
 
 
@@ -39,19 +38,8 @@ public class SalariedWorker extends Worker {
     @Override
     public void payment(Date today)
     {
-        System.out.println("PAYMENT: " +(salary - (salary*getSyndicate_tax()/100) ));
-        check_schedule(today);
+//        System.out.println("PAYMENT: " +(salary - (salary*getSyndicate_tax()/100) ));
+//        check_schedule(today);
     }
 
-    public double getSalary() {
-        return salary;
-    }
-
-    @Override
-    public String toString() {
-        return  super.toString() +
-                "SalariedWorker{" +
-                "salary=" + salary +
-                '}';
-    }
 }

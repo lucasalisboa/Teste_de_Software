@@ -11,15 +11,14 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-public class Add extends Operation implements Command {
+public class Add implements Command {
 
     public List<AddEmployer> addEmployers;
     Scanner sc;
 
 
     public Add() {
-        super();
-        addEmployers = new ArrayList<AddEmployer>();
+        addEmployers = new ArrayList<>();
         addEmployers.add(0, new AddHourist());
         addEmployers.add(1,new AddSalaried());
         addEmployers.add(2, new AddCommissioned());

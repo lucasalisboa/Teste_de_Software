@@ -33,13 +33,10 @@ public class Main {
         System.out.println("1- REMOVE A EMPLOYER");
         System.out.println("2- PUT THE POINT CARD");
         System.out.println("3- PUT THE SALE'S RESULT");
-        System.out.println("4- PUT THE SERVICE TAX");
-        System.out.println("5- CHANGE THE EMPLOYER INFORMATIONS");
-        System.out.println("6- RUN THE PAYROLL");
-        System.out.println("7- SHOW THE PAYMENT SCHEDULE");
-        System.out.println("8- CREATE A NEW PAYMENT SCHEDULE");
-        System.out.println("9 - SHOW THE WORKER INFORMATIONS");
-        System.out.println("10- FINISH THE DAY");
+        System.out.println("4- CHANGE THE EMPLOYER INFORMATIONS");
+        System.out.println("5- RUN THE PAYROLL");
+        System.out.println("6 - SHOW THE WORKER INFORMATIONS");
+        System.out.println("7- FINISH THE DAY");
 
         try{
             int operation;

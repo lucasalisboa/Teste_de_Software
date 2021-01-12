@@ -8,7 +8,7 @@ import br.al.lucas.Entities.SalariedWorker;
 import java.sql.Connection;
 import java.util.Scanner;
 
-public class SaleResult extends Operation implements Command {
+public class SaleResult implements Command {
     Scanner sc;
     CommissionedWorker commissionedWorker;
 

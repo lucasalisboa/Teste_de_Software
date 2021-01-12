@@ -15,13 +15,12 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-public class Remove extends Operation implements Command {
+public class Remove implements Command {
 
     public List<RemoveEmployers> removeEmployers;
     Scanner sc;
     public Remove() {
-        super();
-        removeEmployers = new ArrayList<RemoveEmployers>();
+        removeEmployers = new ArrayList<>();
         removeEmployers.add(0,new RemoveHourist());
         removeEmployers.add(1,new RemoveSalaried());
         removeEmployers.add(2, new RemoveCommissioned());
@@ -30,6 +29,7 @@ public class Remove extends Operation implements Command {
 
     @Override
     public void execute(Connection payroll, MyCalendar calendar) {
+        System.out.println("WHAT'S IS EMPLOYER ID?");
         int id = scanner_int();
         remove(payroll,id);
         }
@@ -43,20 +43,24 @@ public class Remove extends Operation implements Command {
             PreparedStatement stmt_2 = payroll.prepareStatement(sql_2);
             stmt_1.setInt(1, id);
             ResultSet pst = stmt_1.executeQuery();
-            stmt_2.setInt(1, id);
-            if (pst.getString(1) == "horista") {
+            pst.next();
+            if (pst.getString(1).equals("horista")) {
                 removeEmployers.get(0).remove(payroll, id);
-            } else if (pst.getString(1) == "assalariado") {
+            } else if (pst.getString(1).equals("assalariado")) {
                 removeEmployers.get(1).remove(payroll, id);
-            } else if (pst.getString(1) == "comissionado") {
+            } else if (pst.getString(1).equals("comissionado")) {
                 removeEmployers.get(2).remove(payroll, id);
             }
-            stmt_2.executeQuery();
+            stmt_2.setInt(1, id);
+            stmt_2.execute();
+            stmt_1.close();
+            stmt_2.close();
+            pst.close();
+            return true;
         } catch (SQLException e) {
             e.printStackTrace();
             return false;
         }
-        return true;
     }
 
     public int scanner_int(){

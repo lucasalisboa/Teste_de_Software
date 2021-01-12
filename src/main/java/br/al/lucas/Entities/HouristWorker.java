@@ -1,5 +1,7 @@
 package br.al.lucas.Entities;
 
+import br.al.lucas.Menu.MyCalendar;
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -38,20 +40,20 @@ public class HouristWorker extends Worker {
     @Override
     public Calendar newPayDay_Pattern(Date today)
     {
-        pay_schedule = Schedule.PATTERN;
         Calendar cal = Calendar.getInstance();
         cal.setTime(today);
         int week = 6 - cal.get(Calendar.DAY_OF_WEEK);
-        pay_day.setTime(today);
+        Calendar aux = Calendar.getInstance();
+        aux.setTime(today);
         if(week > 0)
         {
-            pay_day.add(Calendar.DAY_OF_MONTH,week);
+            aux.add(Calendar.DAY_OF_MONTH,week);
         }
         else
         {
-            pay_day.add(Calendar.DAY_OF_MONTH,7 + week);
+            aux.add(Calendar.DAY_OF_MONTH,7 + week);
         }
-        return pay_day;
+        return aux;
     }
 
     @Override
@@ -60,17 +62,4 @@ public class HouristWorker extends Worker {
 
     }
 
-    public double getHour_salary() {
-        return hour_salary;
-    }
-
-
-    @Override
-    public String toString() {
-        return super.toString() +
-                "HouristWorker{" +
-                "hour_salary=" + hour_salary +
-                ", hours="  +
-                '}';
-    }
 }

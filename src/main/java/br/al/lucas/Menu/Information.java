@@ -11,7 +11,7 @@ import java.sql.Connection;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class Information extends Operation implements Command {
+public class Information implements Command {
    public Scanner sc;
    public ArrayList<Update> updateEmployers;
     public Information() {

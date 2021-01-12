@@ -5,7 +5,7 @@ import br.al.lucas.Entities.HouristWorker;
 import java.sql.Connection;
 import java.util.Scanner;
 
-public class PointCard extends Operation implements Command {
+public class PointCard implements Command {
     Scanner sc;
     HouristWorker houristWorker;
 

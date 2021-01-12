@@ -1,21 +1,20 @@
-package br.al.lucas.Remove;
+package br.al.lucas.Info;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class RemoveHourist implements RemoveEmployers {
-
+public class InfoSalaried implements Info {
     @Override
-    public boolean remove(Connection payroll, int id) {
-        String sql = "delete from horista where id_empregado = ?";
+    public boolean info(Connection payroll, int id) {
+        String sql = "select * from assalariado where id_empregado = ?";
         try {
             PreparedStatement stmt = payroll.prepareStatement(sql);
             stmt.setInt(1,id);
-            stmt.execute();
-            stmt.close();
+            ResultSet rs = stmt.executeQuery();
+            System.out.println(rs);
             return true;
-
         } catch (SQLException e) {
             e.printStackTrace();
             return false;
