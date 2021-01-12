@@ -58,7 +58,7 @@ public class Remove implements Command {
             pst.close();
             return true;
         } catch (SQLException e) {
-            e.printStackTrace();
+//            e.printStackTrace();
             return false;
         }
     }

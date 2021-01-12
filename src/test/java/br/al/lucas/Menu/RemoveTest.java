@@ -6,6 +6,7 @@ import org.junit.Test;
 
 import java.sql.Connection;
 
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
 public class RemoveTest {
@@ -32,5 +33,9 @@ public class RemoveTest {
     @Test
     public void testar_remover_comissionado(){
         assertTrue(remove.remove(con,2));
+    }
+    @Test
+    public void testar_remover_inexiste(){
+        assertFalse(remove.remove(con,666));
     }
 }

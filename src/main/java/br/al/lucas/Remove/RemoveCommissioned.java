@@ -15,7 +15,7 @@ public class RemoveCommissioned implements RemoveEmployers {
             stmt.close();
             return true;
         } catch (SQLException e) {
-            e.printStackTrace();
+//            e.printStackTrace();
             return false;
         }
   }
