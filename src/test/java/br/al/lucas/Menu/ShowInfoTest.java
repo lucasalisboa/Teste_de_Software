@@ -1,6 +1,7 @@
 package br.al.lucas.Menu;
 
 import br.al.lucas.Connection.ConnectionFactory;
+import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -18,6 +19,10 @@ public class ShowInfoTest {
         connection = new ConnectionFactory();
         con = connection.getConnection();
         showInfo = new ShowInfo();
+    }
+    @After
+    public void tearDown(){
+        connection.closeConnection(con);
     }
 
     @Test

@@ -5,6 +5,7 @@ import br.al.lucas.Update.UpdateAdress;
 import br.al.lucas.Update.UpdateMethod;
 import br.al.lucas.Update.UpdateName;
 import br.al.lucas.Update.UpdateSyndicate;
+import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -27,6 +28,10 @@ public class InformationTest {
         updateAdress = new UpdateAdress();
         updateMethod = new UpdateMethod();
         updateSyndicate = new UpdateSyndicate();
+    }
+    @After
+    public void tearDown(){
+        connection.closeConnection(con);
     }
 
     @Test

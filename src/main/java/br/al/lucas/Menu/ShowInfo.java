@@ -1,6 +1,5 @@
 package br.al.lucas.Menu;
 
-import br.al.lucas.Exceptions.DomainExcepciotion;
 import br.al.lucas.Info.Info;
 import br.al.lucas.Info.InfoCommissioned;
 import br.al.lucas.Info.InfoHourist;
@@ -27,7 +26,7 @@ public class ShowInfo implements Command  {
     }
 
     @Override
-    public void execute(Connection payroll, MyCalendar calendar) throws DomainExcepciotion {
+    public void execute(Connection payroll, MyCalendar calendar) {
         System.out.println("WHAT'S IS EMPLOYER ID?");
         int id = scanner_int();
         info(payroll,id);

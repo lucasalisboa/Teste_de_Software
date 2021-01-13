@@ -2,6 +2,7 @@ package br.al.lucas.Menu;
 
 import br.al.lucas.Connection.ConnectionFactory;
 import br.al.lucas.Entities.CommissionedWorker;
+import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -19,6 +20,10 @@ public class SaleResultTest {
         connection = new ConnectionFactory();
         con = connection.getConnection();
         commissionedWorker = new CommissionedWorker();
+    }
+    @After
+    public void tearDown(){
+        connection.closeConnection(con);
     }
 
     @Test

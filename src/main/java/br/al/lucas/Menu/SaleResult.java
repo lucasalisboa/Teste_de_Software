@@ -2,8 +2,6 @@ package br.al.lucas.Menu;
 
 
 import br.al.lucas.Entities.CommissionedWorker;
-import br.al.lucas.Entities.HouristWorker;
-import br.al.lucas.Entities.SalariedWorker;
 
 import java.sql.Connection;
 import java.util.Scanner;
@@ -13,7 +11,6 @@ public class SaleResult implements Command {
     CommissionedWorker commissionedWorker;
 
     public SaleResult() {
-        super();
         sc = new Scanner(System.in);
         commissionedWorker = new CommissionedWorker();
     }

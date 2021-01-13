@@ -1,5 +1,6 @@
 package br.al.lucas.Connection;
 
+import org.junit.After;
 import org.junit.Before;
 import org.junit.FixMethodOrder;
 import org.junit.runners.MethodSorters;
@@ -20,6 +21,10 @@ public class DeleteTablesTest {
         connection = new ConnectionFactory();
         con = connection.getConnection();
         destructor = new DeleteTables(con);
+    }
+    @After
+    public void tearDown(){
+        connection.closeConnection(con);
     }
 
     @Test

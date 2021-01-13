@@ -8,9 +8,6 @@ import java.util.Calendar;
 import java.util.Date;
 
 public class CommissionedWorker extends Worker {
-    private double base_salary;
-    private double sales;
-    private double percent;
 
     public double newSale(Connection payroll, int worker_id, double valor_venda) {
         if(valor_venda > 0){
@@ -62,10 +59,4 @@ public class CommissionedWorker extends Worker {
         return aux;
     }
 
-    @Override
-    public void payment(Date today) {
-//        double salary = base_salary + sales;
-//        System.out.println("PAYMENT: " +(salary - (salary*getSyndicate_tax()/100) ));
-//        check_schedule(today);
-    }
 }

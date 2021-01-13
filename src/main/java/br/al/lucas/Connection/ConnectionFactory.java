@@ -26,22 +26,4 @@ public class ConnectionFactory {
         }
     }
 
-    public static void closeConnection(Connection con, PreparedStatement stmt){
-        try {
-            stmt.close();
-            closeConnection(con);
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-    }
-
-    public static void closeConnection(Connection con, PreparedStatement stmt, ResultSet rs){
-        try {
-            rs.close();
-            closeConnection(con,stmt);
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-    }
-
 }

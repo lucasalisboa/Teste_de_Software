@@ -1,6 +1,7 @@
 package br.al.lucas.Menu;
 
 import br.al.lucas.Connection.ConnectionFactory;
+import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -20,6 +21,10 @@ public class RemoveTest {
         remove = new Remove();
     }
 
+    @After
+    public void tearDown(){
+        connection.closeConnection(con);
+    }
 
     @Test
     public void testar_remover_horista(){

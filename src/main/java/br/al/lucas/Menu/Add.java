@@ -4,7 +4,6 @@ import br.al.lucas.Add.AddCommissioned;
 import br.al.lucas.Add.AddEmployer;
 import br.al.lucas.Add.AddHourist;
 import br.al.lucas.Add.AddSalaried;
-import br.al.lucas.Exceptions.DomainExcepciotion;
 
 import java.sql.Connection;
 import java.util.ArrayList;
@@ -27,7 +26,7 @@ public class Add implements Command {
 
 
     @Override
-    public void execute(Connection payroll, MyCalendar calendar)  throws DomainExcepciotion {
+    public void execute(Connection payroll, MyCalendar calendar) {
         int type;
         double salario;
         double hora_trabalho;

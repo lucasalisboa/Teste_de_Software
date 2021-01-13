@@ -2,8 +2,6 @@ package br.al.lucas.Menu;
 
 
 import br.al.lucas.Connection.ConnectionFactory;
-import br.al.lucas.Entities.Worker;
-import br.al.lucas.Exceptions.DomainExcepciotion;
 
 import java.sql.Connection;
 import java.util.ArrayList;
@@ -47,10 +45,6 @@ public class Main {
         catch(InputMismatchException e)
         {
             System.out.println("WRONG INPUT DETECTED");
-        }
-        catch(DomainExcepciotion e)
-        {
-            System.out.println(e.getMessage());
         }
         catch(IndexOutOfBoundsException e)
         {

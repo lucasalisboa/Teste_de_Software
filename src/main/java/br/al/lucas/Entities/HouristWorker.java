@@ -11,8 +11,6 @@ import java.util.Date;
 import java.util.Scanner;
 
 public class HouristWorker extends Worker {
-    private double hour_salary;
-
     public double point(Connection payroll,int worker_id,int hours)
     {
         if(hours > 0){
@@ -65,12 +63,6 @@ public class HouristWorker extends Worker {
             aux.add(Calendar.DAY_OF_MONTH,7 + week);
         }
         return aux;
-    }
-
-    @Override
-    public void payment(Date today)
-    {
-
     }
 
 }

@@ -1,7 +1,5 @@
 package br.al.lucas.Menu;
 
-import br.al.lucas.Exceptions.DomainExcepciotion;
-
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
@@ -19,7 +17,7 @@ public class SetDate implements Command {
     }
 
     @Override
-    public void execute(Connection payroll, MyCalendar calendar) throws DomainExcepciotion {
+    public void execute(Connection payroll, MyCalendar calendar) {
         System.out.println("WHAT'S IS EMPLOYER ID?");
         int id = scanner_int();
         String date_string = scanner_String();

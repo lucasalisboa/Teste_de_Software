@@ -4,6 +4,7 @@ import br.al.lucas.Add.AddCommissioned;
 import br.al.lucas.Add.AddHourist;
 import br.al.lucas.Add.AddSalaried;
 import br.al.lucas.Connection.ConnectionFactory;
+import org.junit.After;
 import org.junit.Before;
 import org.junit.FixMethodOrder;
 import org.junit.Test;
@@ -31,6 +32,11 @@ public class AddTest {
         addHourist = new AddHourist();
         addSalaried = new AddSalaried();
         addCommissioned = new AddCommissioned();
+    }
+
+    @After
+    public void tearDown(){
+        connection.closeConnection(con);
     }
 
     @Test

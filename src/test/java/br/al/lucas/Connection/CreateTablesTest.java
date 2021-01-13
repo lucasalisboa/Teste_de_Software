@@ -1,5 +1,6 @@
 package br.al.lucas.Connection;
 
+import org.junit.After;
 import org.junit.Before;
 import org.junit.FixMethodOrder;
 import org.junit.Test;
@@ -22,6 +23,11 @@ public class CreateTablesTest {
         connection = new ConnectionFactory();
         con = connection.getConnection();
         creator = new CreateTables(con);
+    }
+
+    @After
+    public void tearDown(){
+        connection.closeConnection(con);
     }
 
     @Test
@@ -47,5 +53,4 @@ public class CreateTablesTest {
         boolean result = creator.createCommissioned();
         assertTrue(result);
     }
-
     }

@@ -1,6 +1,7 @@
 package br.al.lucas.Menu;
 
 import br.al.lucas.Connection.ConnectionFactory;
+import org.junit.After;
 import org.junit.Before;
 import org.junit.FixMethodOrder;
 import org.junit.Test;
@@ -26,6 +27,10 @@ public class RunPayrollTest {
         myCalendar = MyCalendar.getInstance();
         setDate = new SetDate();
         runPayroll  = new RunPayroll();
+    }
+    @After
+    public void tearDown(){
+        connection.closeConnection(con);
     }
 
     @Test

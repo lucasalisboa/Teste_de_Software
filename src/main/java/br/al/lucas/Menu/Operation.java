@@ -1,8 +1,5 @@
 package br.al.lucas.Menu;
 
-import br.al.lucas.Entities.Worker;
-import br.al.lucas.Exceptions.DomainExcepciotion;
-
 import java.sql.Connection;
 import java.util.ArrayList;
 
@@ -22,7 +19,7 @@ public class Operation {
         slot.add(8,new FinishDay());
     }
 
-    public void operate(int index, Connection payroll, MyCalendar calendar) throws IndexOutOfBoundsException, DomainExcepciotion {
+    public void operate(int index, Connection payroll, MyCalendar calendar) throws IndexOutOfBoundsException {
         slot.get(index).execute(payroll,calendar);
     }
 

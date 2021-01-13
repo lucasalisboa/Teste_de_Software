@@ -4,8 +4,6 @@ import java.util.Calendar;
 import java.util.Date;
 
 public class SalariedWorker extends Worker {
-    private double salary;
-
 
     @Override
     public Calendar newPayDay_Pattern(Date today)
@@ -34,12 +32,4 @@ public class SalariedWorker extends Worker {
         }
         return 0;
     }
-
-    @Override
-    public void payment(Date today)
-    {
-//        System.out.println("PAYMENT: " +(salary - (salary*getSyndicate_tax()/100) ));
-//        check_schedule(today);
-    }
-
 }

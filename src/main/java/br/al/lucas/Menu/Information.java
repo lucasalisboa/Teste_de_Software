@@ -1,10 +1,6 @@
 package br.al.lucas.Menu;
 
 
-import br.al.lucas.Entities.CommissionedWorker;
-import br.al.lucas.Entities.HouristWorker;
-import br.al.lucas.Entities.SalariedWorker;
-import br.al.lucas.Exceptions.DomainExcepciotion;
 import br.al.lucas.Update.*;
 
 import java.sql.Connection;
@@ -25,7 +21,7 @@ public class Information implements Command {
     }
 
     @Override
-    public void execute(Connection payroll, MyCalendar calendar) throws DomainExcepciotion {
+    public void execute(Connection payroll, MyCalendar calendar) {
         System.out.println("WHAT THE EMPLOYER ID?");
         int id_worker = scanner_int();
 

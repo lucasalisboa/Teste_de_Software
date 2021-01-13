@@ -1,7 +1,6 @@
 package br.al.lucas.Menu;
 
 
-import br.al.lucas.Add.AddEmployer;
 import br.al.lucas.Remove.RemoveCommissioned;
 import br.al.lucas.Remove.RemoveEmployers;
 import br.al.lucas.Remove.RemoveHourist;
