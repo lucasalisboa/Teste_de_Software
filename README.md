@@ -1,5 +1,5 @@
 # Teste_de_Software
-Projeto para disciplina de Teste de Software.
+Projeto para disciplina de Teste de Software por *Lucas A. Lisboa*
 
 ### Descrição do Sistema
 Sistema de Gerenciamento de Folha de Pagamento em que os funcionários são classificados da seguinte forma:
