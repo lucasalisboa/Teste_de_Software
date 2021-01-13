@@ -13,28 +13,39 @@ import java.util.Scanner;
 public class HouristWorker extends Worker {
     private double hour_salary;
 
-    public boolean point(Connection payroll,int worker_id,int hours)
+    public double point(Connection payroll,int worker_id,int hours)
     {
-        String sql_1 = "update horista set salario=? where id_empregado=?";
-        String sql_2 = "select * from horista where id_empregado = ?";
-        try {
-            PreparedStatement stmt_2 = payroll.prepareStatement(sql_2);
-            stmt_2.setInt(1,worker_id);
-            ResultSet pst = stmt_2.executeQuery();
-            if(pst.next()){
-                double hora_salario = pst.getDouble(2);
-                double aux_salario = pst.getDouble(3);
-                aux_salario = aux_salario + (hora_salario * hours);
-                PreparedStatement stmt_1 = payroll.prepareStatement(sql_1);
-                stmt_1.setInt(2,worker_id);
-                stmt_1.setDouble(1,aux_salario);
-                stmt_1.executeQuery();
+        if(hours > 0){
+            String sql_1 = "update horista set salario=? where id_empregado=?";
+            String sql_2 = "select * from horista where id_empregado = ?";
+            try {
+                PreparedStatement stmt_2 = payroll.prepareStatement(sql_2);
+                stmt_2.setInt(1,worker_id);
+                ResultSet pst = stmt_2.executeQuery();
+                if(pst.next()) {
+                    double hora_salario = pst.getDouble(2);
+                    double aux_salario = pst.getDouble(3);
+                    aux_salario = aux_salario + (hora_salario * hours);
+                    PreparedStatement stmt_1 = payroll.prepareStatement(sql_1);
+                    stmt_1.setInt(2, worker_id);
+                    stmt_1.setDouble(1, aux_salario);
+                    stmt_1.execute();
+                    stmt_1.close();
+                    pst.close();
+                    stmt_2.close();
+                    return aux_salario;
+                }
+                else{
+                    return -1;
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
+                return -1;
             }
-        } catch (SQLException e) {
-            e.printStackTrace();
-            return false;
         }
-        return true;
+        else{
+            return -1;
+        }
     }
 
     @Override

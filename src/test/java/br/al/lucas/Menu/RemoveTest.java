@@ -6,8 +6,7 @@ import org.junit.Test;
 
 import java.sql.Connection;
 
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.*;
 
 public class RemoveTest {
     public ConnectionFactory connection;

@@ -12,28 +12,38 @@ public class CommissionedWorker extends Worker {
     private double sales;
     private double percent;
 
-    public boolean newSale(Connection payroll, int worker_id, double valor_venda) {
-        String sql_1 = "update comissionado set total_vendas=? where id_empregado=?";
-        String sql_2 = "select * from comissionado where id_empregado = ?";
-        try {
-            PreparedStatement stmt_2 = payroll.prepareStatement(sql_2);
-            stmt_2.setInt(1, worker_id);
-            ResultSet pst = stmt_2.executeQuery();
-            if (pst.next()) {
-                double taxa_venda = pst.getDouble(3);
-                double aux_salario = pst.getDouble(4);
-                aux_salario = aux_salario + (valor_venda * taxa_venda / 100);
-                PreparedStatement stmt_1 = payroll.prepareStatement(sql_1);
-                stmt_1.setInt(2, worker_id);
-                stmt_1.setDouble(1, aux_salario);
-                stmt_1.executeQuery();
+    public double newSale(Connection payroll, int worker_id, double valor_venda) {
+        if(valor_venda > 0){
+            String sql_1 = "update comissionado set total_vendas=? where id_empregado=?";
+            String sql_2 = "select * from comissionado where id_empregado = ?";
+            try {
+                PreparedStatement stmt_2 = payroll.prepareStatement(sql_2);
+                stmt_2.setInt(1, worker_id);
+                ResultSet pst = stmt_2.executeQuery();
+                if (pst.next()) {
+                    double taxa_venda = pst.getDouble(2);
+                    double aux_salario = pst.getDouble(3);
+                    aux_salario = aux_salario + (valor_venda * taxa_venda / 100);
+                    PreparedStatement stmt_1 = payroll.prepareStatement(sql_1);
+                    stmt_1.setInt(2, worker_id);
+                    stmt_1.setDouble(1, aux_salario);
+                    stmt_1.execute();
+                    stmt_1.close();
+                    stmt_2.close();
+                    pst.close();
+                    return aux_salario;
+                }
+                else{
+                    return -1;
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
+                return -1;
             }
-        } catch (SQLException e) {
-            e.printStackTrace();
-            return false;
         }
-        return true;
-
+        else{
+            return -1;
+        }
     }
 
     @Override

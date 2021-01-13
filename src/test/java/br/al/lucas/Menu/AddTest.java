@@ -47,5 +47,5 @@ public class AddTest {
     public void testar_adicionar_horista(){
         assertTrue(addHourist.add(con,"Lucas", "Avenida Brasil, 150, Maceió, Alagoas, Brasil", "Dinheiro", true, calendar,0,200,0));
     }
-
+    
 }

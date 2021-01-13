@@ -35,7 +35,7 @@ public class RunPayroll implements Command {
                 String type = result.getNString(3);
                 boolean syndicate;
                 double salary;
-                if(result.getString(4).equals("YES")){
+                if(result.getString(4).equals("Sim")){
                     syndicate = true;
                 }
                 else{
