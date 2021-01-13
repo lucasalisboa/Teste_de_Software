@@ -13,7 +13,9 @@ public class InfoSalaried implements Info {
             PreparedStatement stmt = payroll.prepareStatement(sql);
             stmt.setInt(1,id);
             ResultSet rs = stmt.executeQuery();
-            System.out.println(rs);
+            rs.next();
+            System.out.println("ID-SALARIED:"+ rs.getString(1));
+            System.out.println("SALARY:"+ rs.getString(2));
             return true;
         } catch (SQLException e) {
             e.printStackTrace();

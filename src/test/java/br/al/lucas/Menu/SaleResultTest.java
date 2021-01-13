@@ -23,7 +23,7 @@ public class SaleResultTest {
 
     @Test
     public void testando_venda_correta(){
-        assertEquals(2025,commissionedWorker.newSale(con,2,100),0.001);
+        assertEquals(25,commissionedWorker.newSale(con,2,100),0.001);
     }
 
     @Test

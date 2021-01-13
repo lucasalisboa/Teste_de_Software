@@ -21,17 +21,18 @@ public class CommissionedWorker extends Worker {
                 stmt_2.setInt(1, worker_id);
                 ResultSet pst = stmt_2.executeQuery();
                 if (pst.next()) {
-                    double taxa_venda = pst.getDouble(2);
-                    double aux_salario = pst.getDouble(3);
-                    aux_salario = aux_salario + (valor_venda * taxa_venda / 100);
+                    double taxa_venda = pst.getDouble(3);
+                    double total_vendas = pst.getDouble(4);
+                    double venda = (valor_venda * taxa_venda / 100);
+                    total_vendas = total_vendas + venda;
                     PreparedStatement stmt_1 = payroll.prepareStatement(sql_1);
                     stmt_1.setInt(2, worker_id);
-                    stmt_1.setDouble(1, aux_salario);
+                    stmt_1.setDouble(1, total_vendas);
                     stmt_1.execute();
                     stmt_1.close();
                     stmt_2.close();
                     pst.close();
-                    return aux_salario;
+                    return venda;
                 }
                 else{
                     return -1;

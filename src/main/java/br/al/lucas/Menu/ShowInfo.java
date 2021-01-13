@@ -39,8 +39,13 @@ public class ShowInfo implements Command  {
             PreparedStatement stmt = payroll.prepareStatement(sql);
             stmt.setInt(1,worker_id);
             ResultSet rs = stmt.executeQuery();
-            System.out.println(rs);
-            String type = rs.getNString(4);
+            rs.next();
+            System.out.println("ID:"+ rs.getString(1));
+            System.out.println("NAME:"+ rs.getString(2));
+            System.out.println("ADRESS:"+ rs.getString(3));
+            System.out.println("PAYMENT METHOD:"+ rs.getString(4));
+            System.out.println("TYPE:"+ rs.getString(5));
+            String type = rs.getNString(5);
             if (type.equals("horista")){
                 infos.get(0).info(payroll,worker_id);
             }
@@ -50,9 +55,11 @@ public class ShowInfo implements Command  {
             else{
                 infos.get(2).info(payroll,worker_id);
             }
+            System.out.println("-----------");
             return true;
         } catch (SQLException e) {
-            e.printStackTrace();
+            System.out.println("Erro na Consulta");
+            System.out.println("-----------");
             return false;
         }
     }

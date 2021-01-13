@@ -18,7 +18,8 @@ public class Operation {
         slot.add(4,new Information());
         slot.add(5,new RunPayroll());
         slot.add(6,new ShowInfo());
-        slot.add(7,new FinishDay());
+        slot.add(7,new SetDate());
+        slot.add(8,new FinishDay());
     }
 
     public void operate(int index, Connection payroll, MyCalendar calendar) throws IndexOutOfBoundsException, DomainExcepciotion {

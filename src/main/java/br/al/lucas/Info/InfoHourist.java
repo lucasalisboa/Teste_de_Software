@@ -13,7 +13,11 @@ public class InfoHourist implements Info {
             PreparedStatement stmt = payroll.prepareStatement(sql);
             stmt.setInt(1,id);
             ResultSet rs = stmt.executeQuery();
-            System.out.println(rs);
+            rs.next();
+
+            System.out.println("ID-HOURIST:"+ rs.getString(1));
+            System.out.println("PAY PER HOUR:"+ rs.getString(2));
+            System.out.println("SALARY"+ rs.getString(3));
             return true;
         } catch (SQLException e) {
             e.printStackTrace();

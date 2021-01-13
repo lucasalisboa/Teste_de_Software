@@ -6,7 +6,7 @@ import java.sql.SQLException;
 
 public class UpdateSyndicate implements Update {
     @Override
-    public boolean change(Connection payroll, int id, String new_info) {
+    public int change(Connection payroll, int id, String new_info) {
         String sql = "update empregados set pertence_sindicato = ? where id_empregado = ?";
 
         try {
@@ -14,16 +14,16 @@ public class UpdateSyndicate implements Update {
             if(new_info == "Sim" || new_info == "Nao"){
                 stmt.setString(1,new_info);
                 stmt.setInt(2,id);
-                stmt.execute();
+                int result = stmt.executeUpdate();
                 stmt.close();
-                return true;
+                return result;
             }
             else{
-                return false;
+                return -1;
             }
         } catch (SQLException e) {
             e.printStackTrace();
-            return false;
+            return -1;
         }
     }
 }

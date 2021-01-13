@@ -16,7 +16,7 @@ public class PaymentSalaried implements Payment {
     @Override
     public double pay(Connection payroll, int id_worker, MyCalendar calendar) {
         String sql_1 = "select salario from assalariado where id_empregado = ?";
-        String sql_2 = "update data_pagamento=? from empregado where id_empregado = ?";
+        String sql_2 = "update empregados set data_pagamento=? where id_empregado = ?";
 
         double salary;
         try {
@@ -25,10 +25,11 @@ public class PaymentSalaried implements Payment {
             stmt_1.setInt(1,id_worker);
             stmt_2.setInt(2,id_worker);
             ResultSet rs = stmt_1.executeQuery();
+            rs.next();
             salary =  rs.getDouble(1);
             Calendar new_date = salariedWorker.newPayDay_Pattern(calendar.today);
-            stmt_2.setDate(1,(Date)new_date.getTime());
-            stmt_2.executeQuery();
+            stmt_2.setDate(1,new Date(new_date.getTime().getTime()));
+            stmt_2.executeUpdate();
             return salary;
         } catch (SQLException e) {
             e.printStackTrace();

@@ -31,24 +31,24 @@ public class InformationTest {
 
     @Test
     public void testando_update_nome(){
-        assertTrue(updateName.change(con,2,"Pedro"));
+        assertEquals(1,updateName.change(con,2,"Pedro"),0.001);
     }
     @Test
     public void testando_update_endereco(){
-        assertTrue(updateAdress.change(con,2,"Cruzeiro do Sul"));
+        assertEquals(1,updateAdress.change(con,2,"Cruzeiro do Sul"),0.001);
     }
     @Test
     public void testando_update_metodo(){
-        assertTrue(updateMethod.change(con,2,"Conta Poupanca"));
+        assertEquals(1,updateMethod.change(con,2,"Conta Poupanca"),0.001);
     }
     @Test
     public void testando_update_sindicato(){
-        assertTrue(updateSyndicate.change(con,2,"Sim"));
+        assertEquals(1, updateSyndicate.change(con,2,"Sim"),0.001);
     }
 
-//    @Test
-//    public void testando_update_funcionario_inexistente(){
-//        assertFalse(updateName.change(con,666,"Falha"));
-//    }
+    @Test
+    public void testando_update_funcionario_inexistente(){
+        assertEquals(0,updateName.change(con,666,"Falha"),0.001);
+    }
 
 }

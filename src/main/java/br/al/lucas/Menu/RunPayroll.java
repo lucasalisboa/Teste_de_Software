@@ -24,10 +24,10 @@ public class RunPayroll implements Command {
         pay(payroll,calendar);
     }
     public boolean pay(Connection payroll, MyCalendar calendar){
-        String sql_1 = "select nome,id,tipo_funcionario,pertence_sindicato from empregados where data_pagamento = ?";
+        String sql_1 = "select nome,id_empregado,tipo_funcionario,pertence_sindicato from empregados where data_pagamento = ?";
         try {
             PreparedStatement stmt_1 = payroll.prepareStatement(sql_1);
-            stmt_1.setDate(1, (Date) calendar.today);
+            stmt_1.setDate(1, new Date(calendar.today.getTime()));
             ResultSet result = stmt_1.executeQuery();
             while (result.next()){
                 String name = result.getString(1);
@@ -57,6 +57,7 @@ public class RunPayroll implements Command {
                     salary = salary - salary*0.125;
                 }
                 System.out.println("NET SALARY:"+salary);
+                System.out.println("----------");
             }
             return true;
         } catch (SQLException e) {
