@@ -43,7 +43,7 @@ public class PointCardTest {
     }
 
     @Test
-    public void testando_funcionario_nao_comissionado(){
+    public void testando_funcionario_nao_horista(){
         assertEquals(-1,houristWorker.point(con,1,5),0.001);
     }
 }
