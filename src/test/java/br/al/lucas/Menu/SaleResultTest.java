@@ -37,12 +37,12 @@ public class SaleResultTest {
     }
 
     @Test
-    public void testando_hora_negativa(){
+    public void testando_venda_negativa(){
         assertEquals(-1,commissionedWorker.newSale(con,2,-100),0.001);
     }
 
     @Test
-    public void testando_funcionario_nao_horista(){
+    public void testando_funcionario_nao_comissionado(){
         assertEquals(-1,commissionedWorker.newSale(con,1,100),0.001);
     }
 }

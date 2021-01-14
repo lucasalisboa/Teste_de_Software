@@ -25,7 +25,7 @@ public class CommissionedWorker extends Worker {
                     PreparedStatement stmt_1 = payroll.prepareStatement(sql_1);
                     stmt_1.setInt(2, worker_id);
                     stmt_1.setDouble(1, total_vendas);
-                    stmt_1.execute();
+                    stmt_1.executeUpdate();
                     stmt_1.close();
                     stmt_2.close();
                     pst.close();

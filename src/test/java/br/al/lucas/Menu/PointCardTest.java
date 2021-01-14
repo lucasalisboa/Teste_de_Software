@@ -38,7 +38,7 @@ public class PointCardTest {
     }
 
     @Test
-    public void testando_venda_negativa(){
+    public void testando_hora_negativa(){
         assertEquals(-1,houristWorker.point(con,3,-1),0.001);
     }
 

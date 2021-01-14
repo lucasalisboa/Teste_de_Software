@@ -49,7 +49,7 @@ public class CreateTablesTest {
     }
 
     @Test
-    public void test4_criar_empregados(){
+    public void test4_criar_comissionado(){
         boolean result = creator.createCommissioned();
         assertTrue(result);
     }
